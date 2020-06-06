@@ -1,0 +1,31 @@
+package com.rohit.udemy;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.rohit.udemy.aopdemo.Account;
+import com.rohit.udemy.aopdemo.DemoConfig;
+import com.rohit.udemy.dao.AccountDAO;
+import com.rohit.udemy.dao.MembershipDAO;
+
+public class MainDemoApp 
+{
+    public static void main( String[] args )
+    {
+    	
+    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+    	
+    	AccountDAO accountDAO = context.getBean(AccountDAO.class);
+    	MembershipDAO membershipDAO = context.getBean(MembershipDAO.class);
+    	
+    	Account account = new Account();
+    	
+    	accountDAO.addAccount(account,true);
+    	accountDAO.doWork();
+    	
+    	membershipDAO.addMemershipAccount();
+    	membershipDAO.goToSleep();
+    	
+    	context.close();
+    	
+    }
+}
